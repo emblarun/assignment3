@@ -1,19 +1,35 @@
 body {
-  background-color: tomato;
+  background-color: #f9b2be;
+  font-family: 'Nunito', sans-serif;
 }
 
-.container {
-  margin-top: 50vh;
+.wrapper {
+  height: 100vh;
+  background-image: url("../img/banana.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
+// Centered container //
+.my-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// -- BUTTONS -- //
 .buttons {
   width: 100%;
   height: 200%;
-  border: solid 3px white;
+  font-weight: 800;
+  font-size: 2rem;
+  border: solid 5px white;
   border-radius: 100px;
   background-color: transparent;
   color: white;
-  transition: .5s ease-in;
+  transition: .3s ease-in;
   overflow: hidden; // Allt sem er fyrir utan sést ekki
   position: relative;
   // After er eitthvað sem kemur fyrir aftan contentið inní elementi en áður en að það lokast.
@@ -21,7 +37,7 @@ body {
   &:after {
     position: absolute;
     height: 100%;
-    transition: .5s;
+    transition: .2s;
     content: ''; // Svo að það sé eitthvað efni
     width: 0; // 0 svo það sjáist ekki
     left: -5px; // Útaf radiusnum þarf ég að ýta þessu smá út
@@ -32,32 +48,150 @@ body {
   }
 
   &:hover {
-    color:  black;
+    color:  #fbd157;
     &:after {
       width: 105%; // Hér stækkar hann og verður 105% og sést þar af leiðandi
     }
   }
+  &:focus {
+    outline: none;
+  }
 }
 
+// ---- //
 
+// --MODAL-- //
+
+// Heldur utanum modal content, staðsetur það
 .modal {
-  display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: tomato; /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: -200px;
+  height: 100vh;
+  animation-name: fadeIn; // Animation function
+  animation-duration: 0.4s;
 }
 
+// Sjálft contenið
 .modal-content {
   background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+  position: relative;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+  height: 297px;
+  animation-name: slideIn; // Animation function
+  animation-duration: 0.4s;
+  background-image: url("../img/puggo.png");
+  background-repeat: no-repeat, repeat;
+}
+
+.modal-content p {
+  position: absolute;
+  font-size: 2rem;
+  width: 30%;
+  left: 53%;
+  top: 25%;
+}
+
+// Close takkin
+.close {
+  color: #fbd157;
+  position: absolute;
+  right: 30px;
+  font-size: 42px;
+  font-weight: bold;
+
+  &:hover,
+  &:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+// Animationið fyrir modalið
+
+@keyframes slideIn {
+    from {top: -500px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+// ---- //
+
+
+// --LODER PAGE -- /
+
+// White background behind content on page //
+
+.loader-container {
+  background-color: rgba( 255, 255, 255, 0.8);
+  padding: 60px 90px;
+  border-radius: 10px;
+}
+//  Loding page button //
+
+.loading-button {
+  font-weight: 600;
+  padding: 10px;
+}
+// Spinning banana //
+
+.loader {
+  width: 100%;
+  height: 100%;
+  animation: spin 2s ease-in-out infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Loading dots //
+
+.dot-container {
+  position: relative;
+  left: 50%;
+  transform: translate(-24%);
+  padding: 40px 0 70px 0;
+}
+
+// Dots //
+.loading{
+  width: 20px;
+  height: 20px;
+  border-radius:100%;
+  float: left;
+  margin-right: 15px;
+  background: #fbd157;
+  animation: bounce 1.2s infinite;
+}
+
+.loading-0{
+    animation-delay: .3s;
+}
+
+.loading-1{
+    animation-delay: .5s;
+}
+
+.loading-2{
+    animation-delay: .7s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    opacity:1;
+  }
+  60% {
+    opacity:.0;
+  }
 }
